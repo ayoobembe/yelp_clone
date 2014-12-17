@@ -2,10 +2,16 @@ Rails.application.routes.draw do
 
   root to: 'restaurants#index'
 
-  devise_for :users
+  devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks"}
   resources :restaurants do 
     resources :reviews
   end
+
+  #How to implement this?
+  #guessing there's a conflict with :destroy_user_session? How/where is it called?
+  # devise_scope :user do 
+  #   get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
+  # end
 
   get 'restaurants' => 'restaurants#index'
 
