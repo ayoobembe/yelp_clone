@@ -15,6 +15,7 @@ RSpec.describe Restaurant, :type => :model do
 
 	describe '#average_rating' do 
 
+
 		context 'no reviews' do 
 			it 'returns "N/A" when there are no reviews' do 
 				restaurant = Restaurant.create(name: "The Ivy")
@@ -24,21 +25,18 @@ RSpec.describe Restaurant, :type => :model do
 
 		context '1 review' do 
 			it 'returns the rating' do
-				restaurant = Restaurant.create(name: "The Ivy")
-				restaurant.reviews.build(rating: 4)
-				# might mention in class - use build not create
-				# http://stackoverflow.com/questions/403671/the-differences-between-build-create-and-create-and-when-should-they-be-us
+				restaurant = Restaurant.create(name: "Blue")
+				restaurant.reviews.create(rating: 4)
 				expect(restaurant.average_rating).to eq 4
 			end
 		end
 
 		context 'multiple reviews' do 
 			it 'returns the average of the ratings' do 
-				restaurant = Restaurant.create(name: "The Ivy")
-				restaurant.reviews.build(rating: 1)
-				restaurant.reviews.build(rating: 5)
-				# expect(restaurant.average_rating).to eq 3<== true
-				expect(restaurant.average_rating).to eq 6
+				restaurant = Restaurant.create(name: "Blue")
+				restaurant.reviews.create(rating: 1)
+				restaurant.reviews.create(rating: 5)
+				expect(restaurant.average_rating).to eq 3
 			end
 		end
 	
