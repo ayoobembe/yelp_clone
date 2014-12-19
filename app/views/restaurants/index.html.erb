@@ -9,6 +9,7 @@
 		<% if restaurant.reviews.any? %>
 			<ul>
 				<% restaurant.reviews.each do |review| %>
+					<p><%= review.endorsements.count %> endorsements</p>
 					<li>
 						<%= review.thoughts %>, <strong><%= review.rating %></strong>/5
 					</li>
